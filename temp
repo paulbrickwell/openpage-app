@@ -1,0 +1,19 @@
+<div>
+  <form v-for="(site, index) in sites" :key="index">
+    <input v-model="site.name" class="border" />
+    <input v-model="site.url" class="border" />
+
+    <button @click.prevent="deleteSite(index)">Delete</button>
+  </form>
+  <button @click.prevent="updateSite">Save</button>
+  <button @click.prevent="reloadPage">Cancel</button>
+  <button @click.prevent="addSite">Add Site</button>
+</div>
+
+<div>
+  <form>
+    <label>Name</label>
+    <input v-model="username" class="border" />
+    <button @click.prevent="setUsername" class="bg-gray-500 p-4">Set</button>
+  </form>
+</div>
