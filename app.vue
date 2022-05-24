@@ -1,12 +1,18 @@
 <template>
-  <div>
+  <div class="bg-gray-900 text-gray-200">
     <Head>
       <Title>OpenPage App</Title>
     </Head>
+
+    <!-- Dashboard -->
     <div
-      class="h-screen w-screen bg-gray-800 text-gray-200 flex flex-col justify-center items-center text-center"
+      class="bg-gray-900 h-screen w-screen flex flex-col grow p-4"
+      v-if="!settings"
     >
-      <div v-if="!sites[0]" class="flex flex-col items-center">
+      <div
+        v-if="!sites[0]"
+        class="flex flex-col items-center justify-center grow"
+      >
         click below to get started
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +36,10 @@
           }}</a>
         </div>
       </div>
-      <div class="fixed bottom-4 cursor-pointer" @click="settings = true">
+      <div
+        class="flex flex-col justify-center items-center mt-8 cursor-pointer"
+        @click="settings = true"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-8 w-8 fill-gray-200 hover:fill-gray-400"
@@ -43,93 +52,102 @@
           />
         </svg>
       </div>
+    </div>
+    <!-- End Dashboard -->
 
-      <!-- Settings Modal -->
-      <div
-        class="fixed left-0 top-0 h-screen w-screen bg-gray-800"
-        v-if="settings"
-      >
-        <div class="max-w-lg mx-auto h-screen flex flex-col justify-center">
-          <div class="flex w-full gap-2">
+    <!-- Settings Screen -->
+    <div
+      class="bg-gray-900 h-screen w-screen flex flex-col grow p-4"
+      v-if="settings"
+    >
+      <div class="flex flex-col items-center justify-center grow">
+        <div class="flex gap-2 w-full md:w-96 mb-2">
+          <input
+            type="text"
+            class="focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-800 h-10"
+            placeholder="jane doe"
+            v-model="username"
+          />
+          <button
+            @click.prevent="setUsername"
+            class="px-4 py-1 h-10 rounded-md bg-sky-500 text-gray-200"
+          >
+            save name
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-2 w-full md:w-96">
+          <div
+            v-for="(site, index) in sites"
+            :key="index"
+            class="flex gap-2 w-full"
+          >
             <input
+              v-model="site.name"
               type="text"
-              class="focus:ring-transparent focus:border-transparent grow sm:text-sm border-transparent rounded-md bg-gray-200 text-gray-800"
-              placeholder="jane doe"
-              v-model="username"
+              name="sitename"
+              class="w-full focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-900 h-10"
+              placeholder="site name"
             />
-            <button
-              @click.prevent="setUsername"
-              class="px-4 py-1 rounded-md bg-sky-500"
-            >
-              save name
-            </button>
-          </div>
+            <input
+              v-model="site.url"
+              type="text"
+              name="siteurl"
+              class="w-full focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-900 h-10"
+              placeholder="https://siteurl.com/"
+            />
 
-          <div class="flex flex-col mt-2 gap-2">
-            <div v-for="(site, index) in sites" :key="index" class="flex gap-2">
-              <input
-                v-model="site.name"
-                type="text"
-                name="sitename"
-                class="focus:ring-transparent focus:border-transparent grow sm:text-sm border-transparent rounded-md bg-gray-200 text-gray-800"
-                placeholder="site name"
-              />
-              <input
-                v-model="site.url"
-                type="text"
-                name="siteurl"
-                class="focus:ring-transparent focus:border-transparent grow sm:text-sm border-transparent rounded-md bg-gray-200 text-gray-800"
-                placeholder="https://siteurl.com/"
-              />
-
-              <button
-                @click.prevent="deleteSite(index)"
-                class="px-4 py-1 rounded-md bg-gray-900"
-              >
-                delete
-              </button>
-            </div>
-          </div>
-          <div class="flex justify-center mt-2">
             <button
-              @click.prevent="updateSite"
-              class="ml-2 px-4 py-1 rounded-md bg-sky-900"
+              @click.prevent="deleteSite(index)"
+              class="px-4 py-1 h-10 rounded-md bg-sky-900 text-gray-200"
             >
-              save sites
-            </button>
-            <button
-              @click.prevent="addSite"
-              class="ml-2 px-4 py-1 rounded-md bg-sky-500"
-            >
-              add site
+              delete
             </button>
           </div>
         </div>
+
         <div
-          class="fixed flex flex-col w-full items-center justify-center bottom-4 cursor-pointer"
-          @click="settings = false"
+          class="flex justify-center gap-2 w-full md:w-96"
+          :class="{ 'mt-2': sites[0] }"
         >
-          <a
-            href="https://github.com/paulbrickwell/openpage-app"
-            class="text-sm text-gray-500 mb-4"
-            target="_blank"
-            >view on github</a
+          <button
+            @click.prevent="updateSite"
+            class="px-4 py-1 h-10 rounded-md grow bg-sky-500 text-gray-200"
           >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-8 w-8 fill-gray-200 hover:fill-gray-400"
-            viewBox="0 0 20 20"
+            save sites
+          </button>
+          <button
+            @click.prevent="addSite"
+            class="px-4 py-1 h-10 rounded-md grow bg-sky-500 text-gray-200"
           >
-            <path
-              fill-rule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            />
-          </svg>
+            add site
+          </button>
         </div>
       </div>
-      <!-- End Settings Modal -->
+      <div
+        class="flex flex-col justify-center items-center mt-8 cursor-pointer"
+        @click="settings = false"
+      >
+        <a
+          href="https://github.com/paulbrickwell/openpage-app"
+          class="text-sm text-gray-500 mb-4"
+          target="_blank"
+          >view on github</a
+        >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8 fill-gray-200 hover:fill-gray-400"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
     </div>
+    <!-- End Settings Screen -->
   </div>
 </template>
 
