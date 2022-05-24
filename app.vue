@@ -6,7 +6,7 @@
 
     <!-- Dashboard -->
     <div
-      class="bg-gray-900 h-screen w-screen flex flex-col grow p-4"
+      class="bg-gray-900 h-screen w-screen flex flex-col grow p-4 text-center"
       v-if="!settings"
     >
       <div
@@ -26,14 +26,16 @@
           />
         </svg>
       </div>
-      <div v-if="username && sites[0]" class="lowercase">
-        {{ greeting }}, {{ username }}
-      </div>
-      <div v-if="sites[0]" class="lowercase mt-4">
-        <div v-for="(site, index) in sites" :key="index">
-          <a target="_blank" :href="site.url" class="hover:text-gray-400">{{
-            site.name
-          }}</a>
+      <div class="flex flex-col items-center justify-center grow">
+        <div v-if="username && sites[0]" class="lowercase">
+          {{ greeting }}, {{ username }}
+        </div>
+        <div v-if="sites[0]" class="lowercase mt-4">
+          <div v-for="(site, index) in sites" :key="index">
+            <a target="_blank" :href="site.url" class="hover:text-gray-400">{{
+              site.name
+            }}</a>
+          </div>
         </div>
       </div>
       <div
