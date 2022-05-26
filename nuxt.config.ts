@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
-  buildModules: ['@nuxtjs/tailwindcss']
+  buildModules: ['@pinia/nuxt', '@nuxtjs/tailwindcss']
 })
