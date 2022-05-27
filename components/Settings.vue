@@ -69,7 +69,7 @@
       >
         Export / Import Sites
       </div>
-      <ExportImport v-if="!settingsStore.exportimport" />
+      <ExportImport v-if="settingsStore.exportimport" />
     </div>
     <div
       class="flex flex-col justify-center items-center mt-8 cursor-pointer"
