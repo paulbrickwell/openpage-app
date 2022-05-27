@@ -7,6 +7,7 @@ export const useSettingsStore = defineStore({
       username: "",
       sites: [],
       settings: false,
+      exportimport: false,
       greeting: "",
     };
   },
@@ -50,6 +51,9 @@ export const useSettingsStore = defineStore({
     },
     toggleSettings() {
       this.settings = !this.settings;
+    },
+    toggleExportImport() {
+      this.exportimport = !this.exportimport;
     },
   },
   getters: {},

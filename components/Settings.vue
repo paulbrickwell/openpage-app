@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-900 h-screen w-screen flex flex-col grow p-4">
+  <div class="relative bg-gray-900 h-screen w-screen flex flex-col grow p-4">
     <div class="flex flex-col items-center justify-center grow">
       <div class="flex gap-2 w-full md:w-96 mb-2">
         <input
@@ -63,6 +63,13 @@
           add site
         </button>
       </div>
+      <div
+        class="mt-4 text-xs underline cursor-pointer"
+        @click="settingsStore.toggleExportImport()"
+      >
+        Export / Import Sites
+      </div>
+      <ExportImport v-if="!settingsStore.exportimport" />
     </div>
     <div
       class="flex flex-col justify-center items-center mt-8 cursor-pointer"
