@@ -1,22 +1,9 @@
 <template>
   <div
-    class="absolute bg-gray-900 top-0 left-0 w-screen h-screen flex flex-col justify-center items-center"
+    class="bg-gray-900 flex flex-col justify-center items-center w-full mt-8"
   >
-    <div @click="settingsStore.toggleExportImport()" class="cursor-pointer">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-8 w-8 fill-gray-200 hover:fill-gray-400"
-        viewBox="0 0 20 20"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-          clip-rule="evenodd"
-        />
-      </svg>
-    </div>
-    <div class="flex flex-col items-center text-center w-full md:w-96">
-      <div class="border-b pb-4 mb-4">
+    <div class="flex flex-col items-center text-center w-full">
+      <div class="pb-8">
         <div class="text-lg">Export</div>
         <div class="text-xs mb-4">
           Export your saved sites to a file to backup or move to a new computer.
@@ -28,16 +15,17 @@
           Export
         </button>
       </div>
-      <div class="w-full pb-4">
+      <div class="pb-4">
         <div class="text-lg">Import</div>
         <div class="text-xs mb-4">
           Load your saved sites from a file. File should be a plain JSON.
+          <br />
           <code>[{"name":"Your Friendly Name","url":"https://site.com"}]</code>
         </div>
         <div class="flex justify-center items-center w-full">
           <label
             for="dropzone-file"
-            class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
             <div class="flex flex-col justify-center items-center pt-5 pb-6">
               <svg

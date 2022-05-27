@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-900 text-gray-200">
     <Head>
-      <Title>OpenPage App</Title>
+      <Title>OpenPage</Title>
     </Head>
     <div v-if="!loaded">
       <Loading />
