@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full text-center mb-8">
+  <div class="w-full mb-8">
     <div class="text-lg">Username</div>
     <div class="text-xs mb-4">
       Set your username to be displayed in various places.
@@ -13,15 +13,16 @@
       />
       <button
         @click="settingsStore.saveUsername()"
-        class="px-4 py-1 h-10 rounded-md bg-sky-500 text-gray-200"
+        class="px-4 py-1 h-10 rounded-md bg-sky-500 text-gray-200 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
       >
-        save name
+        <CheckCircleIcon class="w-6 h-6" />
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { CheckCircleIcon } from "@heroicons/vue/solid";
 import { useSettingsStore } from "@/stores/SettingsStore";
 const settingsStore = useSettingsStore();
 </script>

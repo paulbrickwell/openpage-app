@@ -10,7 +10,7 @@
       <div v-if="loaded">
         <TransitionGroup name="fade" mode="out-in">
           <Dashboard v-if="!settingsStore.settings" />
-          <Settings v-if="settingsStore.settings" />
+          <NewSettings v-if="settingsStore.settings" />
         </TransitionGroup>
       </div>
     </Transition>
