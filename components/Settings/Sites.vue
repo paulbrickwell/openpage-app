@@ -39,12 +39,6 @@
               class="w-full focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-900 h-10"
               placeholder="https://siteurl.com/"
             />
-            <!-- <button
-              @click.prevent="settingsStore.deleteSite(element.name)"
-              class="px-4 py-1 h-10 rounded-md bg-sky-900 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
-            >
-              <XCircleIcon class="w-6 h-6" />
-            </button> -->
           </div>
         </template>
       </draggable>
@@ -64,8 +58,14 @@
       :class="{ 'mt-2': settingsStore.sites[0] }"
     >
       <button
-        @click.prevent="settingsStore.addSite()"
+        @click.prevent="settingsStore.saveSites()"
         class="px-4 py-1 h-10 rounded-md bg-sky-500 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
+      >
+        <CheckCircleIcon class="w-6 h-6" />
+      </button>
+      <button
+        @click.prevent="settingsStore.addSite()"
+        class="px-4 py-1 h-10 rounded-md bg-sky-900 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
       >
         <PlusCircleIcon class="w-6 h-6" />
       </button>

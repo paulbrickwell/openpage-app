@@ -6,7 +6,7 @@ export const useSettingsStore = defineStore({
     return {
       username: "",
       sites: [],
-      settings: true,
+      settings: false,
       import: false,
       greeting: "",
     };
