@@ -2,41 +2,11 @@
   <div class="w-full">
     <div class="text-lg">Sites</div>
     <div class="text-xs mb-4">Add or remove your favorite sites.</div>
-    <div class="">
-      <!-- <div
-        v-for="(site, index) in settingsStore.sites"
-        :key="index"
-        class="flex gap-2 w-full"
-      >
-        <input
-          v-model="site.name"
-          type="text"
-          name="sitename"
-          class="w-full focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-900 h-10"
-          placeholder="site name"
-        />
-        <input
-          v-model="site.url"
-          type="text"
-          name="siteurl"
-          class="w-full focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-900 h-10"
-          placeholder="https://siteurl.com/"
-        />
-
-        <button
-          @click.prevent="settingsStore.deleteSite()"
-          class="px-4 py-1 h-10 rounded-md bg-sky-900 text-gray-200"
-        >
-          delete
-        </button>
-      </div> -->
+    <div class="flex">
       <draggable
         :list="settingsStore.sites"
         item-key="index"
-        :move="checkMove"
-        @start="dragging = true"
-        @end="dragging = false"
-        class="flex flex-col gap-2"
+        class="flex flex-col gap-2 w-full"
       >
         <template #item="{ element }">
           <div class="flex gap-2">
@@ -54,6 +24,7 @@
                 />
               </svg>
             </div>
+            {{ element.newIndex }}
             <input
               v-model="element.name"
               type="text"
@@ -68,29 +39,33 @@
               class="w-full focus:ring-transparent focus:border-transparent grow border-transparent rounded-md bg-gray-200 text-gray-900 h-10"
               placeholder="https://siteurl.com/"
             />
-            <button
-              @click.prevent="settingsStore.deleteSite(index)"
+            <!-- <button
+              @click.prevent="settingsStore.deleteSite(element.name)"
               class="px-4 py-1 h-10 rounded-md bg-sky-900 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
             >
               <XCircleIcon class="w-6 h-6" />
-            </button>
+            </button> -->
           </div>
         </template>
       </draggable>
+      <div class="flex flex-col gap-2 ml-2">
+        <div v-for="(site, index) in settingsStore.sites" :key="index" class="">
+          <button
+            @click.prevent="settingsStore.deleteSite(index)"
+            class="px-4 py-1 h-10 rounded-md bg-sky-900 text-gray-200"
+          >
+            delete
+          </button>
+        </div>
+      </div>
     </div>
     <div
       class="flex justify-center gap-2 w-full"
       :class="{ 'mt-2': settingsStore.sites[0] }"
     >
       <button
-        @click.prevent="settingsStore.saveSites()"
-        class="px-4 py-1 h-10 rounded-md bg-sky-500 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
-      >
-        <CheckCircleIcon class="w-6 h-6" />
-      </button>
-      <button
         @click.prevent="settingsStore.addSite()"
-        class="px-4 py-1 h-10 rounded-md bg-sky-900 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
+        class="px-4 py-1 h-10 rounded-md bg-sky-500 flex items-center justify-center hover:bg-sky-700 cursor-pointer"
       >
         <PlusCircleIcon class="w-6 h-6" />
       </button>
